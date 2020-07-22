@@ -1,0 +1,29 @@
+{
+  "name": "bilibili-pcheartbeat",
+  "version": "0.0.1",
+  "description": "bilibili-pcheartbeat",
+  "license": "GPL3",
+  "homepage": "https://github.com/lkeme/bilibili-pcheartbeat",
+  "repository": {
+    "url": "git+https://github.com/lkeme/bilibili-pcheartbeat.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Lkeme",
+    "email": "Useri@live.cn",
+    "url": "https://mudew.com/"
+  },
+  "keywords": [
+    "bilibili",
+    "live",
+    "heartbeat",
+    "bililive"
+  ],
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "jsdom": "^16.3.0",
+    "path": "^0.12.7"
+  }
+}
