@@ -130,3 +130,7 @@ dmypy.json
 
 # NPM
 node_modules
+
+# custom
+.idea
+package-lock.json
