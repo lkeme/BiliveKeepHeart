@@ -24,9 +24,13 @@ function encryptData(t, r) {
     //     "time": 180, "ts": 1570521002259
     // });
     // var r = [2, 5, 1, 4]
+    if (t.ets === null || t.benchmark === null || t.time === null) {
+        //
+        return "404ed600e83797c90f691afe68123427af0e2cdee9fd7644c93bb8ab533cc69dd4115e1ef61f93154487523e053af82ead334360109cad4eeea813d3d5bbc404"
+    }
     t = JSON.stringify(t);
     // filtering dirty data
-    if (r === undefined || r === null  || t === undefined || t === null) {
+    if (r === undefined || r === null || t === undefined || t === null) {
         //
         return "404ed600e83797c90f691afe68123427af0e2cdee9fd7644c93bb8ab533cc69dd4115e1ef61f93154487523e053af82ead334360109cad4eeea813d3d5bbc404"
     }
@@ -54,7 +58,7 @@ function parsePort(defaultPort) {
     program.parse(process.argv);
     const options = program.opts();
     if (options.port === undefined) {
-        return  defaultPort;
+        return defaultPort;
     }
     return options.port;
 }
