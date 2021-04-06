@@ -1,8 +1,8 @@
 <p align="center">
-
-[comment]: <> (<img src="https://i0.hdslb.com/bfs/archive/e62b6b095ef38dfb742687f11e4b570dde420b5d.png" width="300">)
 <img src="https://i0.hdslb.com/bfs/vc/c1e19150b5d1e413958d45e0e62f012e3ee200af.png" width="300">
 </p>
+
+[comment]: <> (<img src="https://i0.hdslb.com/bfs/archive/e62b6b095ef38dfb742687f11e4b570dde420b5d.png" width="300">)
 
 <h3 align="center">BiliBili Heartbeat Server</h3>
 
@@ -33,12 +33,20 @@ null
 4. Start-up
 
 ```
+# cli
 default port 3000
 > node app.js 
 
 custom port 1-65535
 > node app.js -p 5200
 > node app.js --port 5201
+```
+
+```
+# pm2
+cp ecosystem.config.js.example  ecosystem.config.js
+npm install -g pm2
+pm2 start ecosystem.config.js
 ```
 
 ## API

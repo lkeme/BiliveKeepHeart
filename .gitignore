@@ -135,3 +135,4 @@ node_modules
 .idea
 package-lock.json
 libs
+ecosystem.config.js

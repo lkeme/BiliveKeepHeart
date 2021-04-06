@@ -1,0 +1,21 @@
+module.exports = {
+    apps: [
+        {
+            name: 'bilibili-pcheartbeat',
+            script: 'app.js',
+            // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
+            args: [
+                '-p 3000'
+            ],
+            env: {
+                FORCE_COLOR: 1
+            },
+            instances: 1,
+            exec_mode: 'fork',
+            autorestart: true,
+            watch: false,
+            max_memory_restart: '1G',
+        }
+    ],
+};
+
