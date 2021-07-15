@@ -1,16 +1,18 @@
 <p align="center">
-<img src="https://i0.hdslb.com/bfs/feed-admin/86848c76a76fe46d84d6ef1ab735d9398ed3ee8e.png" width="300">
-</p>
+<img src="http://i0.hdslb.com/bfs/feed-admin/10641bbc5189591221c00958f3458f33798c7caa.png" width="300">
+
+[comment]: <> (<img src="https://i0.hdslb.com/bfs/feed-admin/86848c76a76fe46d84d6ef1ab735d9398ed3ee8e.png" width="300">)
 
 [comment]: <> (<img src="https://i0.hdslb.com/bfs/vc/c1e19150b5d1e413958d45e0e62f012e3ee200af.png" width="300">)
 
 [comment]: <> (<img src="https://i0.hdslb.com/bfs/archive/e62b6b095ef38dfb742687f11e4b570dde420b5d.png" width="300">)
+</p>
 
-[comment]: <> (<h3 align="center">BiliBili Heartbeat Server</h3>)
+<h3 align="center">Bilibili Heartbeat Server</h3>
 
 ## Introduction
 
-null
+[![Stargazers over time](https://starchart.cc/lkeme/bilibili-pcheartbeat.svg)](https://starchart.cc/lkeme/bilibili-pcheartbeat)
 
 ## Demo
 
