@@ -1,10 +1,12 @@
 <p align="center">
-<img src="https://i0.hdslb.com/bfs/vc/c1e19150b5d1e413958d45e0e62f012e3ee200af.png" width="300">
+<img src="https://i0.hdslb.com/bfs/feed-admin/86848c76a76fe46d84d6ef1ab735d9398ed3ee8e.png" width="300">
 </p>
+
+[comment]: <> (<img src="https://i0.hdslb.com/bfs/vc/c1e19150b5d1e413958d45e0e62f012e3ee200af.png" width="300">)
 
 [comment]: <> (<img src="https://i0.hdslb.com/bfs/archive/e62b6b095ef38dfb742687f11e4b570dde420b5d.png" width="300">)
 
-<h3 align="center">BiliBili Heartbeat Server</h3>
+[comment]: <> (<h3 align="center">BiliBili Heartbeat Server</h3>)
 
 ## Introduction
 
@@ -132,4 +134,6 @@ I don"t take any responsibility if legal dispute occurs.
 
 ## License
 
-GPL v3
+[GPL v3](https://github.com/lkeme/bilibili-pcheartbeat/blob/master/LICENSE)
+
+Copyright (c) 2018-2021 [bilibili-pcheartbeat](https://github.com/lkeme/bilibili-pcheartbeat).
