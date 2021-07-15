@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const {program} = require('commander');
 const log = require('./app/util/LogHelper')
 const common = require('./app/util/common')
+const client = require('./app/util/client')
 const encrypt = require('./app/controller/encrypt')
 const app = express();
 log.LogHelper.Init();
@@ -37,9 +38,8 @@ app.use((req, res, next) => {
     req.method === 'OPTIONS' ? res.status(204).end() : next()
 })
 
-// body parser
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+// middleware .body parser
+app.use(client(), bodyParser.json(), bodyParser.urlencoded({extended: false}));
 
 app.get('/enc', (request, response) => {
     encrypt.handleGetEncrypt(request, response)
