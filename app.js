@@ -4,7 +4,8 @@ const {program} = require('commander');
 const log = require('./app/util/LogHelper')
 const common = require('./app/util/common')
 const client = require('./app/util/client')
-const encrypt = require('./app/controller/encrypt')
+const commonHandle = require('./app/controller/common')
+const encryptHandle = require('./app/controller/encrypt')
 const app = express();
 log.LogHelper.Init();
 
@@ -41,17 +42,43 @@ app.use((req, res, next) => {
 // middleware .body parser
 app.use(client(), bodyParser.json(), bodyParser.urlencoded({extended: false}));
 
+// Wasm方式
 app.get('/enc', (request, response) => {
-    encrypt.handleGetEncrypt(request, response)
+    commonHandle.handleCommonGet(request, response)
 });
 app.post('/enc', (request, response) => {
-    encrypt.handlePostEncrypt(request, response)
+    encryptHandle.handleWasmEncrypt(request, response)
 });
+
+// PcWasm方式
+app.get('/pc_wasm', (request, response) => {
+    commonHandle.handleCommonGet(request, response)
+});
+app.post('/pc_wasm', (request, response) => {
+    encryptHandle.handleWasmEncrypt(request, response)
+});
+
+// Pc algorithm
+app.get('/pc', (request, response) => {
+    commonHandle.handleCommonGet(request, response)
+});
+app.post('/pc', (request, response) => {
+    encryptHandle.handlePcEncrypt(request, response)
+});
+
+// App algorithm
+app.get('/app', (request, response) => {
+    commonHandle.handleCommonGet(request, response)
+});
+app.post('/app', (request, response) => {
+    encryptHandle.handleAppEncrypt(request, response)
+});
+
 
 // start api server
 const port = parsePort(3000)
-app.listen(port || process.env.PORT, () => {
+app.listen(process.env.PORT || port, () => {
     // console.info(`server now listening at port ${port}`);
-    console.info(`server running @ http://0.0.0.0:${port}`)
+    console.info(`server running @ http://0.0.0.0:${process.env.PORT || port}`)
 });
 

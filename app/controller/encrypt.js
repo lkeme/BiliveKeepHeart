@@ -1,19 +1,101 @@
-const enc = require('../core/enc')
+const wasm = require('../core/wasm/wasm')
 const common = require('../util/common')
+const pc = require("../core/pc/pc");
+const app = require("../core/app/app");
 
-
-const handleGetEncrypt = (request, response) => {
-    console.error(`不支持的GET请求方式`);
-    // response.setHeader('Content-Type', 'application/json')
-    response.status(405).json({
-        "code": -1,
-        "s": "",
-        "message": "HTTP 405 Method Not Allowed"
-    })
+const handleAppEncrypt = (request, response) => {
+    let t = request.body.t
+    let r = request.body.r
+    r = r instanceof Object ? r : JSON.parse(r)
+    //
+    let promise = new Promise(function (resolve, reject) {
+        try {
+            t = JSON.stringify(common.formatParams(t));
+            let s = app.spyder(t, r);
+            resolve(s)
+        } catch (err) {
+            reject(err);
+        }
+    });
+    return promise.then(
+        data => {
+            response.json({
+                "code": 0,
+                "s": data,
+                "message": "success"
+            })
+        }
+    ).catch(
+        err => {
+            response.status(400).json({
+                "code": -3,
+                "s": "",
+                "message": err
+            })
+        }
+    );
 }
 
 
-const handlePostEncrypt = (request, response) => {
+const handlePcEncrypt = (request, response) => {
+    let t = request.body.t
+    let r = request.body.r
+    r = r instanceof Object ? r : JSON.parse(r)
+
+    if (!filterPcParams(t, r)) {
+        console.warn("当前请求数据错误，返回默认值，请检查请求。");
+        return response.status(400).json({
+            "code": -2,
+            "s": "",
+            "message": "The request is missing a required parameter.",
+        });
+    }
+    // 额外处理
+    let [parent_id, area_id, seq_id, room_id] = t.id instanceof Object ? t.id : JSON.parse(t.id);
+    let [buvid, uuid] = t.device instanceof Object ? t.device : JSON.parse(t.device);
+    let key = t.benchmark;
+    let newData = {
+        platform: 'web',
+        parent_id,
+        area_id,
+        seq_id,
+        room_id,
+        buvid,
+        uuid,
+        ets: t.ets,
+        time: t.time,
+        ts: t.ts,
+    };
+    //
+    let promise = new Promise(function (resolve, reject) {
+        try {
+            t = JSON.stringify(common.formatParams(newData));
+            let s = pc.spyder(t, r, key);
+            resolve(s)
+        } catch (err) {
+            reject(err);
+        }
+    });
+    return promise.then(
+        data => {
+            response.json({
+                "code": 0,
+                "s": data,
+                "message": "success"
+            })
+        }
+    ).catch(
+        err => {
+            response.status(400).json({
+                "code": -3,
+                "s": "",
+                "message": err
+            })
+        }
+    );
+}
+
+const filterPcParams = function (t, r) {
     // var t = JSON.stringify({
     //     "id":"[1, 34, 1, 23058]",
     //     "device":"[\"e0345df3964d37eb1234562275392dfd\", \"7190a3eb-1234-40c1-1234-3d66bda01d3e\"]",
@@ -23,14 +105,24 @@ const handlePostEncrypt = (request, response) => {
     //     "ts":1570521002259
     // });
     // var r = [2, 5, 1, 4]
+    // filtering dirty data -> null or undefined or NaN
+    if (!r || !t || !t.ets || !t.benchmark || !t.time || t.ets === 'null' || t.benchmark === 'null' || t.time === 'null') {
+        console.warn("当前请求数据错误，返回默认值，请检查请求。");
+        return false
+    }
+    return true
+}
 
+const handleWasmEncrypt = (request, response) => {
     // response.write('you posted:\n')
     // console.debug(request.body);
     // res.send(JSON.stringify({'s': encryptData(common.formatParams(req.body.t), req.body.r)}, null, 2))
     let t = request.body.t
     let r = request.body.r
+    r = r instanceof Object ? r : JSON.parse(r)
+
     // filtering dirty data -> null or undefined or NaN
-    if (!r || !t || !t.ets || !t.benchmark || !t.time || t.ets === 'null' || t.benchmark === 'null' || t.time === 'null') {
+    if (!filterPcParams(t, r)) {
         console.warn("当前请求数据错误，返回默认值，请检查请求。");
         return response.status(400).json({
             "code": -2,
@@ -41,7 +133,7 @@ const handlePostEncrypt = (request, response) => {
     let promise = new Promise(function (resolve, reject) {
         try {
             t = JSON.stringify(common.formatParams(t));
-            let s = enc.spyder(t, r);
+            let s = wasm.spyder(t, r);
             resolve(s)
         } catch (err) {
             reject(err);
@@ -67,6 +159,7 @@ const handlePostEncrypt = (request, response) => {
 }
 
 module.exports = {
-    handleGetEncrypt: handleGetEncrypt,
-    handlePostEncrypt: handlePostEncrypt,
+    handleWasmEncrypt: handleWasmEncrypt,
+    handlePcEncrypt: handlePcEncrypt,
+    handleAppEncrypt: handleAppEncrypt,
 }
