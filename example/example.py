@@ -156,6 +156,36 @@ def generate_s_test():
 # 41.1b7a7f2689ea751d75d4.js:608 打印加密后
 # 41.1b7a7f2689ea751d75d4.js:609 cdc04cffba0b1f9f7bfa145b27fc5a4430c95d83d526002371ea363f42c608792798170e3f23dd3eda69480553699ad1b002a8ba7fc60070ae77153930a86e5e
 
+
+def pc_client_sign(data):
+    url = 'http://127.0.0.1:3000/enc'
+    url = 'http://127.0.0.1:3000/pc'
+    url = 'http://127.0.0.1:3000/pc_wasm'
+    response = requests.post(url, json=data).json()
+    print(response)
+
+def client_sign(data: dict):
+#     output = 'b888312f8bf4cfc76a78332e3893a59ffebbfb179510b330fa27f6a2fc022174dbea9a1953dca93048e84ec33d9e550b5b629f2c0d9333e2a57a95ac4cee0a5d'
+#     input = {"platform": "android", "uuid": "DBA8090A-5775-42E7-9762-10FD2E8447D870399",
+#              "buvid": "a5067487f9e78bdd25c4356a92ae5e8d", "seq_id": "1", "room_id": "23058", "parent_id": "1",
+#              "area_id": "34", "timestamp": "1595242600", "secret_key": "axoaadsffcazxksectbbb", "watch_time": "300",
+#              "up_id": "11153765", "up_level": "40", "jump_from": "240033", "gu_id": "075284f1c7343e6f180ae02a8ee43561",
+#              "play_type": "1",
+#              "play_url": "https://d1--cn-gotcha02.bilivideo.com/live-js/883254/live_11153765_9369560_2500.flv?cdn=cn-gotcha02&expires=1595246501&len=0&oi=1032635280&pt=ios&qn=400&trid=f15580399cde4df59bd8b50d68d4a8b4&sigparams=cdn,expires,len,oi,pt,qn,trid&sign=d72637bd518822d6d9d5c65d0ec921a6&ptype=0&src=11&level=1",
+#              "s_time": "0", "data_behavior_id": "", "data_source_id": "",
+#              "up_session": "l:one:live:record:23058:1586762229", "visit_id": "44c7215c96e1e403f8c821a1efaac9bf",
+#              "watch_status": "1", "click_id": "BEA91C5F-F0C6-4F4A-AC1E-144BC9CB1CA240968",
+#              "session_id": "E6D29411-3BB3-4136-98B5-01D585778B8C40970", "player_type": "1", "client_ts": "1595242900"}
+#     rules = [3, 7, 2, 6, 8]
+#     payload = {
+#             "t": input,
+#             "r": rules
+#              }
+    # ["sha512", "sha3_512", "sha384", "sha3_384", "blake2b"]
+    url = 'http://127.0.0.1:3000/app'
+    response = requests.post(url, json=data).json()
+    print(response)
+
 if __name__ == '__main__':
     cookie = ""
     session = requests.Session()
