@@ -1,0 +1,87 @@
+module.exports = {
+    apps: [
+        {
+            name: 'h0',
+            script: 'app.js',
+            // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
+            args: [
+                '-p 3000'
+            ],
+            env: {
+                FORCE_COLOR: 1
+            },
+            instances: 1,
+            exec_mode: 'fork',
+            autorestart: true,
+            watch: false,
+            max_memory_restart: '150M',
+        },
+        // {
+        //     name: 'h1',
+        //     script: 'app.js',
+        //     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
+        //     args: [
+        //         '-p 3001'
+        //     ],
+        //     env: {
+        //         FORCE_COLOR: 1
+        //     },
+        //     instances: 1,
+        //     exec_mode: 'fork',
+        //     autorestart: true,
+        //     watch: false,
+        //     max_memory_restart: '1G',
+        // },
+        // {
+        //     name: 'h2',
+        //     script: 'app.js',
+        //     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
+        //     args: [
+        //         '-p 3002'
+        //     ],
+        //     env: {
+        //         FORCE_COLOR: 1
+        //     },
+        //     instances: 1,
+        //     exec_mode: 'fork',
+        //     autorestart: true,
+        //     watch: false,
+        //     max_memory_restart: '1G',
+        // },
+        // {
+        //     name: 'h3',
+        //     script: 'app.js',
+        //     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
+        //     args: [
+        //         '-p 3003'
+        //     ],
+        //     env: {
+        //         FORCE_COLOR: 1
+        //     },
+        //     instances: 1,
+        //     exec_mode: 'fork',
+        //     autorestart: true,
+        //     watch: false,
+        //     max_memory_restart: '1G',
+        // },
+        // {
+        //     name: 'h4',
+        //     script: 'app.js',
+        //     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
+        //     args: [
+        //         '-p 3004'
+        //     ],
+        //     env: {
+        //         FORCE_COLOR: 1
+        //     },
+        //     instances: 1,
+        //     exec_mode: 'fork',
+        //     autorestart: true,
+        //     watch: false,
+        //     max_memory_restart: '1G',
+        // }
+    ],
+};
+// npm install (执行一次就好)
+// npm install -g pm2 (执行一次就好)
+// pm2 start ecosystem.config.js
